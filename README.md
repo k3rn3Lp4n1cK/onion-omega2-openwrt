@@ -1,5 +1,6 @@
 # onion-omega2-openwrt
-Install openwrt on onion omega2+ for STA only mode
+Install openwrt on onion omega2+ for STA only mode.<br>
+_This is NOT a walkthrough, it is for reference._
 
 # Power Dock 2 - connect serial port of Onion Omega2+
 If you are like me, you purchased a PowerDock 2 and for some reason, the manufacturer decided not to include Serial0 on thier fancy breakout header.  Would have been nice if they designed the pins to fit into a standard size breadboard like many other dev boards...
@@ -28,5 +29,61 @@ sysupgrade /tmp/openwrt-ramips-mt76x8-onion_omega2p-squashfs-sysupgrade.bin
 
 The Omega2+ will reboot.  Once reboot is complete, an open openwrt wireless access point will be available for connection.
 
-*note: My setup would not reboot if my usb-tty converter was connected. I had to remove all power from Omega2+ Power Dock 2 and pull the USB-TTY device from the usb port.  I would then power on the Omega, plug in the USB-TTY device and open a serial console port in a terminal in that exact order.
+_note: My setup would not reboot if my usb-tty converter was connected. I had to remove all power from Omega2+ Power Dock 2 and pull the USB-TTY device from the usb port.  I would then power on the Omega, plug in the USB-TTY device and open a serial console port in a terminal in that exact order._
+
+# Setup OpenWRT Onion Omega2+ for STA mode only
+Get to a command line by either SSH or use the serial connection.
+Modify /etc/config/network
+```
+vi /etc/config/network
+
+# SHOULD LIKE SIMILAR TO THIS
+config interface 'loopback'
+        option ifname 'lo'
+        option proto 'static'
+        option ipaddr '127.0.0.1'
+        option netmask '255.0.0.0'
+
+config globals 'globals'
+        option ula_prefix 'fdfc:7816:9cd8::/48'
+
+config interface 'lan'
+        option ifname 'eth0'
+        option type 'bridge'
+        option proto 'static'
+        option netmask '255.255.255.0'
+        option ip6assign '60'
+        option ipaddr '192.168.100.1'
+
+config switch
+        option name 'switch0'
+        option reset '1'
+        option enable_vlan '0'
+
+config interface 'wwan'
+        option proto 'dhcp'
+```
+
+Modify /etc/config/wireless
+```
+vi /etc/config/wireless
+
+# SHOULD LIKE SIMILAR TO THIS
+config wifi-device 'radio0'
+        option type 'mac80211'
+        option channel '11'
+        option hwmode '11gn'
+        option path 'platform/10300000.wmac'
+        option htmode 'HT20'
+        option disabled '0'
+
+config wifi-iface 'default_radio0'
+        option device 'radio0'
+        option network 'wwan'
+        option mode 'sta'
+        option encryption 'psk2'
+        option key 'your_wifi_password'
+        option ssid 'your_wifi_ssid'
+```
+
 
