@@ -6,4 +6,4 @@ If you are like me, you purchased a PowerDock 2 and for some reason, the manufac
 
 So I decided to just solder on a couple of wires to the RX0 TX0 pins on the PowerDock 2 so that I can use my own 3v3 USB-SERIAL converter.  Thanks Onion Omega!
 
-<img src="pictures/solder-Ser0-connections.png" alt="Picture of Serial Solder Connections" style="float: left; margin-right: 10px;" />
+<img src="pictures/solder-serial-powerdock2.jpg" alt="Picture of Serial Solder Connections" style="float: left; margin-right: 10px;" />
