@@ -85,5 +85,19 @@ config wifi-iface 'default_radio0'
         option key 'your_wifi_password'
         option ssid 'your_wifi_ssid'
 ```
+Upon completion of network and wireless configuration, restart network service and try pinging something on the internet.
+```
+service network restart
+[  793.450632] wlan0: authenticate with 00:11:22:33:44:55
+[  793.464690] wlan0: send auth to 00:11:22:33:44:55 (try 1/3)
+[  793.479471] wlan0: authenticated
+[  793.489455] wlan0: associate with 00:11:22:33:44:55 (try 1/3)
+[  793.517774] wlan0: RX AssocResp from 00:11:22:33:44:55 (capab=0x431 status=0 aid=1)
+
+ping 1.1.1.1
+64 bytes from 1.1.1.1: seq=0 ttl=57 time=22.484 ms
+--- 1.1.1.1 ping statistics ---
+1 packets transmitted, 1 packets received, 0% packet loss
+```
 
 
