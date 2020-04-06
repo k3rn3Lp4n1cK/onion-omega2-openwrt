@@ -11,4 +11,4 @@ So I decided to just solder on a couple of wires to the RX0 TX0 pins on the Powe
 Next, complete the TX, RX and GND Connections (remember RX-TX TX-RX).  Bring up a terminal on the correct COM port with settings of 115200 8,N,1,N.
 
 Power on the device and the boot up sequence should show up in the terminal
-<img src="pictures/serial-powerdock2.jpg" alt="Picture of Serial Connections" style="float: left; margin-right: 10px;" />
+<img src="pictures/serial_powerdock2.jpg" alt="Picture of Serial Connections" style="float: left; margin-right: 10px;" />
