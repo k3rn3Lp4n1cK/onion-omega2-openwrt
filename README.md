@@ -54,6 +54,7 @@ config interface 'lan'
         option netmask '255.255.255.0'
         option ip6assign '60'
         option ipaddr '192.168.100.1'
+        option disabled '1'
 
 config switch
         option name 'switch0'
@@ -100,4 +101,24 @@ ping 1.1.1.1
 1 packets transmitted, 1 packets received, 0% packet loss
 ```
 
+# Configuration as a client
+Disable un-needed services
+```
+service uhttpd disable
+service uhttpd stop
+service odhcpd disable
+service odhcpd stop
+service dnsmasq disable
+service dnsmasq stop
+```
 
+Configure settings
+```
+vim /etc/config/system
+vim /etc/config/dropbear # change option Interface 'wwan' to enable ssh access from wireless network.
+```
+
+Configure Firewall
+```
+TODO
+```
